@@ -1,0 +1,24 @@
+{
+  "name": "slimple-mplayer-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x1d/slimple-mplayer-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0x1d/slimple-mplayer-service/issues"
+  },
+  "homepage": "https://github.com/0x1d/slimple-mplayer-service#readme",
+  "dependencies": {
+    "mplayer": "^2.1.0",
+    "slimple": "^0.6.6",
+    "websocket": "^1.0.24"
+  }
+}
