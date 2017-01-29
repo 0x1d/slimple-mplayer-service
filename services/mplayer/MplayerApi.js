@@ -1,6 +1,3 @@
-var WebSocketClient = require('websocket').client;
-var MPlayer = require('mplayer');
-
 module.exports = MplayerApi = {
     resource: '/api',
     GET: (ctx, http) => {
@@ -15,37 +12,12 @@ module.exports = MplayerApi = {
         });
     },
     POST: (ctx, http) => {
-        // console.log(http.data);
-        //let mode = http.data.mode; // todo handle modes
-        if (!ctx.mPlayerInstance) {
-            ctx.mPlayerInstance = new MPlayer();
-            ctx.ws = {
-                client: new WebSocketClient()
-            };
-            ctx.ws.client.on('connect', (connection) => {
-                ctx.ws.connection = connection;
-            });
-            if (!ctx.ws.client.connection || !ctx.ws.client.connection.connected) {
-                ctx.ws.client.connect('ws://conductor:1880/wss');
-            }
-        }
-        ctx.mPlayerInstance.on('status', (data) => {
-            ctx.music.status = data;
-            ctx.ws.connection.send(JSON.stringify({
-                topic: 'rpi.music',
-                playerState: 'change',
-                status: data
-            }));
-        });
-
         if (!!http.data)
-            ctx.mPlayerInstance.openPlaylist(http.data);
+            ctx.mPlayer.openPlaylist(http.data);
         http.reply({});
     },
     DELETE: (ctx, http) => {
-        if (ctx.mPlayerInstance) {
-            ctx.mPlayerInstance.stop();
-        }
+        ctx.mPlayer.stop();
         http.reply({});
     }
 };
