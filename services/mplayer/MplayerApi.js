@@ -1,14 +1,11 @@
+const playlists = require('../../playlists.js');
+
 module.exports = MplayerApi = {
     resource: '/api',
     GET: (ctx, http) => {
         http.reply({
             status: ctx.music.status,
-            playlists: [
-                { 'techno fm': 'http://yp.shoutcast.com/sbin/tunein-station.pls?id=1151202' },
-                { 'deep fm': 'http://yp.shoutcast.com/sbin/tunein-station.pls?id=291180' },
-                { 'psyradio': 'http://ipx.psyradio.org:8010/listen.pls' },
-                { 'fristky': 'http://yp.shoutcast.com/sbin/tunein-station.pls?id=47007' }
-            ]
+            playlists: playlists
         });
     },
     POST: (ctx, http) => {
